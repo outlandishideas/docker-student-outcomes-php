@@ -12,11 +12,11 @@ RUN apt-get update && \
     docker-php-ext-install pdo pgsql pdo_pgsql && \
     apt-get remove -y g++ 
     
- RUN apt-get update && apt-get install -y \
-        libicu-dev libicu52 g++ \
-    && docker-php-ext-install intl \
-    && apt-get remove -y \
-        libicu-dev g++ 
+ RUN apt-get update && \
+     apt-get install zlib1g-dev libicu-dev g++ -y && \
+     docker-php-ext-configure intl && \
+     docker-php-ext-install intl && \
+     apt-get remove -y g++
 
 RUN apt-get update && apt-get install libcurl4-openssl-dev -y \
     && docker-php-ext-install curl \
