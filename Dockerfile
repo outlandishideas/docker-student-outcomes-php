@@ -63,3 +63,7 @@ RUN apt-get update \
     && echo "xdebug.profiler_enable_trigger=1" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini \
     && echo "xdebug.profiler_output_dir=/app/profiling" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini \
     && apt-get remove -y autoconf g++ make
+    
+RUN touch /.composer && \
+    chgrp -R 0 /.composer && \
+    chmod -R g=u /.composer
